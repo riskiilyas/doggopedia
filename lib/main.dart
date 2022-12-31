@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.brown,
       ),
       home: const MyHomePage(title: 'Doggopedia'),
     );
@@ -60,33 +60,36 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-        automaticallyImplyLeading: false,
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
-      ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: [
-          DogItem(dog: DOGS_DATA[0]),
-          DogItem(dog: DOGS_DATA[1]),
-          DogItem(dog: DOGS_DATA[2]),
-          DogItem(dog: DOGS_DATA[3]),
-          DogItem(dog: DOGS_DATA[4]),
-          DogItem(dog: DOGS_DATA[5]),
-          DogItem(dog: DOGS_DATA[6]),
-          DogItem(dog: DOGS_DATA[7]),
-          DogItem(dog: DOGS_DATA[8]),
-          DogItem(dog: DOGS_DATA[9]),
-          DogItem(dog: DOGS_DATA[10]),
-          DogItem(dog: DOGS_DATA[11]),
-          DogItem(dog: DOGS_DATA[12]),
-          DogItem(dog: DOGS_DATA[13]),
-          DogItem(dog: DOGS_DATA[14]),
-        ],
-      )
-    );
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Text(widget.title),
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          ],
+        ),
+        body: GridView.count(
+          crossAxisCount: 2,
+          childAspectRatio: 0.9,
+          children: [
+            DogItem(dog: DOGS_DATA[0]),
+            DogItem(dog: DOGS_DATA[1]),
+            DogItem(dog: DOGS_DATA[2]),
+            DogItem(dog: DOGS_DATA[3]),
+            DogItem(dog: DOGS_DATA[4]),
+            DogItem(dog: DOGS_DATA[5]),
+            DogItem(dog: DOGS_DATA[6]),
+            DogItem(dog: DOGS_DATA[7]),
+            DogItem(dog: DOGS_DATA[8]),
+            DogItem(dog: DOGS_DATA[9]),
+            DogItem(dog: DOGS_DATA[10]),
+            DogItem(dog: DOGS_DATA[11]),
+            DogItem(dog: DOGS_DATA[12]),
+            DogItem(dog: DOGS_DATA[13]),
+            DogItem(dog: DOGS_DATA[14]),
+            DogItem(dog: DOGS_DATA[15])
+          ],
+        ));
   }
 }
