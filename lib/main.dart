@@ -1,6 +1,7 @@
 import 'package:doggopedia/dog_item.dart';
 import 'package:doggopedia/dogs_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -66,7 +67,42 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
           automaticallyImplyLeading: false,
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+            PopupMenuButton(
+              // add icon, by default "3 dot" icon
+              // icon: Icon(Icons.book)
+                itemBuilder: (context) {
+                  return [
+                    const PopupMenuItem<int>(
+                      value: 0,
+                      child: Text("About"),
+                    ),
+
+                    const PopupMenuItem<int>(
+                      value: 1,
+                      child: Text("Exit"),
+                    ),
+                  ];
+                },
+                onSelected: (value) {
+                  if (value == 0) {
+                    showDialog(
+                            context: context,
+                            builder: (context) =>
+                                AlertDialog(
+                                  title: const Text('About'),
+                                  content: const Text('This App is part of Final Project of Dicoding Flutter Pemula. This app is wikipedia for dogs species. In this app, you can discover kinds of dog species and read the characteristic of each dog. Have fun with this app :)\n\nEmail\t: riskiilyas03@gmail.com\nWeb\t\t\t: www.riskiilyas.com'),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () => Navigator.of(context).pop(),
+                                        child: const Text('Ok')
+                                    )
+                                  ],
+                                ));
+                  } else if (value == 1) {
+                    SystemNavigator.pop();
+                  }
+                }
+            ),
           ],
         ),
         body: GridView.count(
