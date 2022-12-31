@@ -8,7 +8,7 @@ import 'dogs_data.dart';
 
 class DogItem extends StatelessWidget {
   final Dog dog;
-  
+
   const DogItem({Key? key, required this.dog}) : super(key: key);
 
   @override
@@ -24,21 +24,30 @@ class DogItem extends StatelessWidget {
           toastDuration: const Duration(seconds: 2),
         );
 
-        Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen(dog: dog,)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailScreen(
+                      dog: dog,
+                    )));
       },
       child: Card(
         child: Column(
           children: [
-            Expanded(flex: 4,child: dog.image,),
+            Expanded(
+                flex: 4,
+                child: dog.image
+            ),
             Expanded(
               flex: 1,
-              child: Text(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
                   dog.name,
                   style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF3E2723)
-                  ),
+                      fontWeight: FontWeight.bold, color: Color(0xFF3E2723)),
                   textAlign: TextAlign.center,
+                ),
               ),
             )
           ],

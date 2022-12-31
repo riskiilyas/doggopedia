@@ -18,25 +18,30 @@ class DetailScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              dog.image,
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                dog.name,
-                style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                dog.image,
+                const SizedBox(
+                  height: 8,
                 ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(dog.desc)
-            ],
+                Text(
+                  dog.name,
+                  style:
+                      const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  dog.desc,
+                  style: const TextStyle(
+                    fontSize: 16
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
