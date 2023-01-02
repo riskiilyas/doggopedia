@@ -1,3 +1,4 @@
+
 import 'package:doggopedia/dog_item.dart';
 import 'package:doggopedia/dogs_data.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var _ascendingOrder = true;
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -60,6 +63,27 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+    var items = [
+      DogItem(dog: DOGS_DATA[0]),
+      DogItem(dog: DOGS_DATA[1]),
+      DogItem(dog: DOGS_DATA[2]),
+      DogItem(dog: DOGS_DATA[3]),
+      DogItem(dog: DOGS_DATA[4]),
+      DogItem(dog: DOGS_DATA[5]),
+      DogItem(dog: DOGS_DATA[6]),
+      DogItem(dog: DOGS_DATA[7]),
+      DogItem(dog: DOGS_DATA[8]),
+      DogItem(dog: DOGS_DATA[9]),
+      DogItem(dog: DOGS_DATA[10]),
+      DogItem(dog: DOGS_DATA[11]),
+      DogItem(dog: DOGS_DATA[12]),
+      DogItem(dog: DOGS_DATA[13]),
+      DogItem(dog: DOGS_DATA[14]),
+      DogItem(dog: DOGS_DATA[15])
+    ];
+    items.sort((d1, d2) {
+      return ((_ascendingOrder) ? (d1.dog.name.compareTo(d2.dog.name)) : (d2.dog.name.compareTo(d1.dog.name)));
+    });
     return Scaffold(
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
@@ -67,65 +91,53 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
           automaticallyImplyLeading: false,
           actions: [
-            PopupMenuButton(
-              // add icon, by default "3 dot" icon
-              // icon: Icon(Icons.book)
-                itemBuilder: (context) {
-                  return [
-                    const PopupMenuItem<int>(
-                      value: 0,
-                      child: Text("About"),
-                    ),
-
-                    const PopupMenuItem<int>(
-                      value: 1,
-                      child: Text("Exit"),
-                    ),
-                  ];
-                },
-                onSelected: (value) {
-                  if (value == 0) {
-                    showDialog(
-                            context: context,
-                            builder: (context) =>
-                                AlertDialog(
-                                  title: const Text('About'),
-                                  content: const Text('This App is part of Final Project of Dicoding Flutter Pemula. This app is wikipedia for dogs species. In this app, you can discover kinds of dog species and read the characteristic of each dog. Have fun with this app :)\n\nEmail\t: riskiilyas03@gmail.com\nWeb\t\t\t: www.riskiilyas.com'),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () => Navigator.of(context).pop(),
-                                        child: const Text('Ok')
-                                    )
-                                  ],
-                                ));
-                  } else if (value == 1) {
-                    SystemNavigator.pop();
-                  }
-                }
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _ascendingOrder = !_ascendingOrder;
+                });
+              },
+              icon: const Icon(Icons.sort_by_alpha),
+              color: (_ascendingOrder) ? Colors.white : Colors.white24,
             ),
+            PopupMenuButton(
+                // add icon, by default "3 dot" icon
+                // icon: Icon(Icons.book)
+                itemBuilder: (context) {
+              return [
+                const PopupMenuItem<int>(
+                  value: 0,
+                  child: Text("About"),
+                ),
+                const PopupMenuItem<int>(
+                  value: 1,
+                  child: Text("Exit"),
+                ),
+              ];
+            }, onSelected: (value) {
+              if (value == 0) {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          title: const Text('About'),
+                          content: const Text(
+                              'This App is part of Final Project of Dicoding Flutter Pemula. This app is wikipedia for dogs species. In this app, you can discover kinds of dog species and read the characteristic of each dog. Have fun with this app :)\n\nEmail\t: riskiilyas03@gmail.com\nWeb\t\t\t: www.riskiilyas.com'),
+                          actions: [
+                            TextButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: const Text('Ok'))
+                          ],
+                        ));
+              } else if (value == 1) {
+                SystemNavigator.pop();
+              }
+            }),
           ],
         ),
         body: GridView.count(
           crossAxisCount: 2,
           childAspectRatio: 0.9,
-          children: [
-            DogItem(dog: DOGS_DATA[0]),
-            DogItem(dog: DOGS_DATA[1]),
-            DogItem(dog: DOGS_DATA[2]),
-            DogItem(dog: DOGS_DATA[3]),
-            DogItem(dog: DOGS_DATA[4]),
-            DogItem(dog: DOGS_DATA[5]),
-            DogItem(dog: DOGS_DATA[6]),
-            DogItem(dog: DOGS_DATA[7]),
-            DogItem(dog: DOGS_DATA[8]),
-            DogItem(dog: DOGS_DATA[9]),
-            DogItem(dog: DOGS_DATA[10]),
-            DogItem(dog: DOGS_DATA[11]),
-            DogItem(dog: DOGS_DATA[12]),
-            DogItem(dog: DOGS_DATA[13]),
-            DogItem(dog: DOGS_DATA[14]),
-            DogItem(dog: DOGS_DATA[15])
-          ],
+          children: items
         ));
   }
 }

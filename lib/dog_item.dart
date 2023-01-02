@@ -1,10 +1,9 @@
 import 'package:doggopedia/detail_screen.dart';
+import 'package:doggopedia/dogs_data.dart';
 import 'package:doggopedia/toast_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 
-import 'dogs_data.dart';
 
 class DogItem extends StatelessWidget {
   final Dog dog;
