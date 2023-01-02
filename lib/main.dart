@@ -1,8 +1,10 @@
 
 import 'package:doggopedia/dog_item.dart';
 import 'package:doggopedia/dogs_data.dart';
+import 'package:doggopedia/toast_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(const MyApp());
@@ -95,6 +97,14 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 setState(() {
                   _ascendingOrder = !_ascendingOrder;
+                  var fToast = FToast();
+                  fToast.init(context);
+
+                  fToast.showToast(
+                    child: ToastLayout(msg: (_ascendingOrder) ? 'A-Z' : 'Z-A'),
+                    gravity: ToastGravity.BOTTOM,
+                    toastDuration: const Duration(seconds: 2),
+                  );
                 });
               },
               icon: const Icon(Icons.sort_by_alpha),
